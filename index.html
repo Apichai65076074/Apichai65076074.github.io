@@ -1,246 +1,162 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Apichai — Tech Portfolio</title>
-  <meta name="description" content="Tech portfolio ของ Apichai: Projects, Skills, Experience, Contact" />
+  <title>Apichai Siangchin — Tech Portfolio</title>
 
-  <!-- Security-minded meta (works within the limits of meta-based CSP on static hosts) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
-  <meta http-equiv="Referrer-Policy" content="no-referrer" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Note: X-Content-Type-Options and other headers are better set via a proxy (e.g., Cloudflare) if needed. -->
+  <!-- Security: CSP via meta (works on modern browsers for the document itself) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self';
+                 font-src 'self' data:; connect-src 'self'; object-src 'none';
+                 base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Apichai — Tech Portfolio" />
-  <meta property="og:description" content="DevSecOps-first tech portfolio on GitHub Pages" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'><rect width='100%' height='100%' fill='%231a1b26'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='64' font-family='Segoe UI, Roboto, Arial, sans-serif'>Apichai — Portfolio</text></svg>" />
+  <!-- Security: strict referrer for external requests -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- Favicon (embedded data URI to keep one-file simplicity) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231a1b26'/><text x='50' y='58' text-anchor='middle' font-size='56' fill='%23fff' font-family='Segoe UI, Roboto, Arial'>A</text></svg>">
+  <!-- SEO basics -->
+  <meta name="description" content="Tech portfolio by Apichai Siangchin — full‑stack, AI/ML, and DevSecOps projects." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🛡️</text></svg>">
 
-  <style>
-    :root{
-      --bg:#0b0c10;--card:#11121a;--muted:#9aa4b2;--text:#e6eaf2;--acc:#4f46e5;--acc2:#22c55e;--border:#1f2230;
-      --shadow: 0 10px 25px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;background:var(--bg);color:var(--text);}
-    a{color:var(--acc);text-decoration:none} a:hover{opacity:.9;text-decoration:underline}
-    .container{max-width:1080px;margin:0 auto;padding:20px}
-    header{position:sticky;top:0;background:rgba(11,12,16,.7);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--border);z-index:10}
-    .nav{display:flex;align-items:center;justify-content:space-between}
-    .nav a.logo{font-weight:800;letter-spacing:.5px}
-    .nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-    .btn{display:inline-flex;gap:.5rem;align-items:center;border:1px solid var(--border);background:linear-gradient(180deg, #1b1e2b, #131521);padding:.6rem .9rem;border-radius:12px;box-shadow:var(--shadow)}
-
-    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center;padding:40px 0}
-    .badge{display:inline-block;background:#101223;border:1px solid var(--border);padding:.35rem .6rem;border-radius:999px;color:var(--muted);font-weight:600}
-    h1{font-size:clamp(28px, 4.5vw, 52px);margin:.6rem 0 1rem}
-    .lead{color:var(--muted);max-width:58ch}
-    .hero-card{background: radial-gradient(1200px 400px at 0% 0%, rgba(79,70,229,.15), transparent 50%),
-                           radial-gradient(800px 300px at 100% 100%, rgba(34,197,94,.12), transparent 50%),
-                           var(--card);border:1px solid var(--border);padding:18px;border-radius:18px;box-shadow:var(--shadow)}
-
-    .grid{display:grid;gap:16px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:1fr 1fr}}
-    @media (max-width:640px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
-
-    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-    .card h3{margin:.2rem 0 .4rem;font-size:1.05rem}
-    .muted{color:var(--muted)}
-
-    .kicker{display:flex;align-items:center;gap:10px;margin:6px 0 12px}
-    .kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--acc2)}
-
-    .section{padding:16px 0 32px}
-    .section h2{font-size:1.6rem;margin:0 0 10px}
-
-    .tag{display:inline-block;border:1px solid var(--border);padding:.25rem .6rem;border-radius:999px;color:var(--muted);font-size:.88rem;margin:.15rem .25rem 0 0}
-
-    footer{border-top:1px solid var(--border);margin-top:28px;padding:22px 0;color:var(--muted)}
-
-    details{border:1px dashed var(--border);border-radius:12px;padding:12px;background:#0d0f18}
-    details summary{cursor:pointer;font-weight:700}
-    code{background:#0f1220;border:1px solid var(--border);padding:.2rem .35rem;border-radius:6px}
-    pre{background:#0f1220;border:1px solid var(--border);padding:12px;border-radius:12px;overflow:auto}
-
-    .btn-ghost{background:transparent;border:1px dashed var(--border)}
-  </style>
-
-  <script>
-    // Basic hash routing for in-page navigation (no external libs)
-    window.addEventListener('hashchange', () => {
-      const el = document.querySelector(location.hash);
-      if (el) el.scrollIntoView({behavior:'smooth'});
-    });
-  </script>
-
-  <!-- JSON-LD for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Apichai",
-    "url": "https://nhoom-apichai.github.io/",
-    "jobTitle": "Full‑stack / DevSecOps Engineer",
-    "sameAs": [
-      "https://github.com/nhoom-apichai"
-    ]
-  }
-  </script>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="logo" href="#top">Apichai.dev</a>
-      <ul>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a class="btn" href="#contact">Contact</a></li>
-      </ul>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">🛡️</span>
+        <a class="brand-name" href="/">Apichai Siangchin</a>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">Menu</button>
+        <ul id="navMenu" class="nav-menu">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button id="themeBtn" class="btn btn-ghost" title="Toggle theme">🌓</button></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <main class="container" id="top">
-    <section class="hero">
-      <div>
-        <span class="badge">DevSecOps‑first · GitHub Pages</span>
-        <h1>สวัสดีครับ ผม <span style="color:var(--acc)">Apichai</span> — นักพัฒนา Full‑stack ที่หลงใหลใน <em>Security</em> และ CI/CD</h1>
-        <p class="lead">พอร์ตโฟลิโอนี้แสดงตัวอย่างโปรเจกต์จริง ตามแนวทางความปลอดภัย (OWASP/DevSecOps). โค้ดทั้งหมดเปิดอยู่บน GitHub เพื่อให้ตรวจสอบย้อนกลับได้.</p>
-        <div class="kicker"><span class="dot"></span><span class="muted">Bangkok · TypeScript · Python · Docker · FastAPI · React</span></div>
-        <div style="display:flex; gap:10px; margin-top:12px">
-          <a class="btn" href="https://github.com/nhoom-apichai" rel="me noopener" target="_blank">GitHub</a>
-          <a class="btn btn-ghost" href="#hardening">Security Hardening</a>
-        </div>
+  <main id="content" class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Hi, I’m <span class="highlight">Apichai</span>.</h1>
+      <p class="lead">
+        Full‑stack & AI engineer focusing on secure-by-default software,
+        DevSecOps, and practical ML. I build things that ship.
+      </p>
+      <div class="cta">
+        <a href="#projects" class="btn">See Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
       </div>
-      <div class="hero-card" aria-hidden="true">
-        <div class="card" style="min-height:220px">
-          <div class="muted">Featured Project</div>
-          <h3>Secure Task Manager (FastAPI + React)</h3>
-          <p class="muted">JWT auth · Role-based access · Docker Compose · Pre-commit (ruff, mypy, bandit)</p>
-          <div style="display:flex; gap:8px; margin-top:6px">
-            <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">OWASP ASVS</span>
-          </div>
-          <p style="margin-top:10px"><a href="https://github.com/Apichai65076074/secure-task-manager" target="_blank" rel="noopener">ดูโค้ดบน GitHub →</a></p>
-        </div>
-      </div>
+      <ul class="badges" aria-label="Focus areas">
+        <li>FastAPI · React</li>
+        <li>Docker · CI/CD</li>
+        <li>Security · Threat modeling</li>
+      </ul>
     </section>
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div class="grid cols-3">
-        <article class="card">
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <h2 id="projects-title">Featured Projects</h2>
+
+      <!-- Project Card 1 -->
+      <article class="card">
+        <div class="card-body">
           <h3>Secure Task Manager</h3>
-          <p class="muted">FastAPI · React · Docker · CI/CD · DevSecOps</p>
-          <a href="https://github.com/Apichai65076074/secure-task-manager" target="_blank" rel="noopener">Repository</a>
-        </article>
-        <article class="card">
+          <p>Full‑stack app (FastAPI + React) with auth, RBAC, and CI/CD. Built with security checks (ruff, bandit, mypy) and Dockerized services.</p>
+          <ul class="pill-list">
+            <li>FastAPI</li>
+            <li>PostgreSQL</li>
+            <li>Docker</li>
+            <li>OWASP ASVS</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="https://github.com/Apichai65076074/secure-task-manager" rel="noopener">Source</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project Card 2 -->
+      <article class="card">
+        <div class="card-body">
           <h3>Personal Finance Tracker (AI Insights)</h3>
-          <p class="muted">Python · Pandas · LLM tips · Data viz</p>
-          <a href="#" aria-disabled="true" onclick="alert('Coming soon!')">Repo (coming soon)</a>
-        </article>
-        <article class="card">
+          <p>Spending analytics with privacy-first design. Local-only data option, deterministic exports, and explainable AI summaries.</p>
+          <ul class="pill-list">
+            <li>Python</li>
+            <li>Pandas</li>
+            <li>DataViz</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Project Card 3 -->
+      <article class="card">
+        <div class="card-body">
           <h3>Cloud Image Processing API</h3>
-          <p class="muted">FastAPI · Queue · Object Storage</p>
-          <a href="#" aria-disabled="true" onclick="alert('Coming soon!')">Repo (coming soon)</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <div class="card">
-        <div>
-          <span class="tag">Python</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">React/Vite</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Docker</span>
-          <span class="tag">CI/CD</span>
-          <span class="tag">OWASP</span>
-          <span class="tag">Kubernetes</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" class="section">
-      <h2>Experience</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Full‑stack / DevSecOps Engineer</h3>
-          <p class="muted">โฟกัสการออกแบบระบบที่ปลอดภัย ตรวจสอบย้อนกลับได้ และรองรับการสเกล</p>
-          <ul>
-            <li>จัดทำ pipeline CI/CD พร้อม test, lint, SAST (bandit)</li>
-            <li>กำหนด Security headers และ Content Security Policy</li>
-            <li>ทำ Log/Metric/Trace ให้พร้อม observability</li>
+          <p>GPU-ready microservice to process images at scale. Zero-trust defaults and rate-limited endpoints.</p>
+          <ul class="pill-list">
+            <li>FastAPI</li>
+            <li>CUDA</li>
+            <li>K8s</li>
           </ul>
         </div>
-        <div class="card">
-          <h3>AI & Data</h3>
-          <p class="muted">LLM, Retrieval, Model Serving</p>
-          <ul>
-            <li>ออกแบบ API สำหรับ inference อย่างปลอดภัย</li>
-            <li>ทำ Feature flags และ rollout แบบปลอดภัย</li>
-          </ul>
+      </article>
+    </section>
+
+    <section id="skills" class="section" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills</h2>
+      <div class="grid two">
+        <ul>
+          <li>Backend: FastAPI, Node.js</li>
+          <li>Frontend: React, Vite</li>
+          <li>Databases: PostgreSQL, Redis</li>
+        </ul>
+        <ul>
+          <li>DevOps: Docker, GitHub Actions</li>
+          <li>Security: Threat Modeling, SAST</li>
+          <li>ML: YOLOv8, RAG, LangGraph</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="timeline" class="section" aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Timeline</h2>
+      <ol class="timeline">
+        <li><time datetime="2025-08">Aug 2025</time> Building a 5‑project tech portfolio with DevSecOps best practices.</li>
+        <li><time datetime="2024-12">Dec 2024</time> Led deployment hardening for containerized services.</li>
+        <li><time datetime="2023-06">Jun 2023</time> Shipped AI‑powered assistant prototype in Thai.</li>
+      </ol>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p>Best way to reach me: open an issue on a repo or email <a href="mailto:you@example.com">you@example.com</a>.</p>
+      <form id="contactForm" aria-label="Contact form (nonfunctional template)" onsubmit="return false;">
+        <div class="grid two">
+          <label>ชื่อ
+            <input type="text" name="name" autocomplete="name" placeholder="ชื่อของคุณ">
+          </label>
+          <label>อีเมล
+            <input type="email" name="email" autocomplete="email" placeholder="email@domain.com">
+          </label>
         </div>
-      </div>
-    </section>
-
-    <section id="hardening" class="section">
-      <h2>Security Hardening (สำหรับ GitHub Pages)</h2>
-      <div class="card">
-        <ol>
-          <li><strong>ลดการพึ่งพาภายนอก</strong>: ใช้ asset แบบ local ทั้งหมด, inline CSS/JS เฉพาะที่จำเป็น</li>
-          <li><strong>CSP (meta)</strong>: กำหนด <code>default-src 'self'</code>, <code>object-src 'none'</code>, <code>frame-ancestors 'none'</code>, <code>upgrade-insecure-requests</code></li>
-          <li><strong>Referrer-Policy</strong>: <code>no-referrer</code></li>
-          <li><strong>Permissions-Policy</strong>: ปิดการเข้าถึงกล้อง/ไมค์/ที่อยู่ (ตั้งได้ผ่าน HTTP header ที่ proxy เช่น Cloudflare)</li>
-          <li><strong>ไฟล์สำคัญ</strong>: เพิ่ม <code>/.well-known/security.txt</code> และ <code>robots.txt</code> (หากใช้ custom domain + proxy)</li>
-          <li><strong>Automated checks</strong>: ใช้ GitHub Advanced Security (secret scanning/Dependabot) และเปิด Branch protection</li>
-        </ol>
-        <details>
-          <summary>ขั้นตอนตั้งค่า Repo และ Pages (แนะนำ)</summary>
-          <ol>
-            <li>สร้าง repo ชื่อ <code>nhoom-apichai.github.io</code> (Public)</li>
-            <li>วางไฟล์นี้เป็น <code>index.html</code> ที่ root แล้ว commit & push</li>
-            <li>เปิด GitHub Pages: ไปที่ <em>Settings → Pages</em> เลือก Deploy from <em>main</em></li>
-            <li>(ตัวเลือก) ใช้ Cloudflare Proxy เพื่อเพิ่ม Security Headers ระดับ HTTP</li>
-            <li>เปิด <em>Settings → Code security and analysis</em>: เปิด Dependabot, Secret scanning</li>
-            <li>เปิด <em>Settings → Branches</em>: เพิ่ม Branch protection (Require PR, status checks)</li>
-          </ol>
-          <p>ตัวอย่างคำสั่ง Git:</p>
-<pre><code>git init
-git branch -M main
-git add index.html
-git commit -m "feat: initial portfolio"
-git remote add origin https://github.com/nhoom-apichai/nhoom-apichai.github.io.git
-git push -u origin main
-</code></pre>
-        </details>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <div class="card">
-        <p class="muted">ต้องการร่วมงานหรือสอบถาม? ติดต่อได้ทาง GitHub หรืออีเมลของคุณ</p>
-        <p>📧 <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-      </div>
+        <label>ข้อความ
+          <textarea name="message" rows="4" placeholder="ฉันสนใจโปรเจกต์..."></textarea>
+        </label>
+        <button class="btn" type="submit" aria-disabled="true" title="This is a static demo">Send (demo)</button>
+      </form>
     </section>
   </main>
 
-  <footer class="container">
-    <div>© <span id="y"></span> Apichai — Built with ❤️ on GitHub Pages · <a href="#hardening">Security notes</a></div>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <small>© <span id="year"></span> Apichai Siangchin. Built with care & security‑first thinking.</small>
+      <a class="top" href="#content" title="Back to top">↑ Top</a>
+    </div>
   </footer>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
